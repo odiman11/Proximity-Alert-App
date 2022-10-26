@@ -46,6 +46,7 @@ public class GpsManager extends AppCompatActivity {
 
 
     //VARIABLES
+    Handler handler;
     static Context appContext;
     private static MutableLiveData<Location> gpsLocationLiveData;
     private static GpsManager singleInstance = null;
@@ -100,7 +101,7 @@ public class GpsManager extends AppCompatActivity {
                         grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // Permission is granted. Continue the action or workflow
                     // in your app.
-                    Handler handler = new Handler();
+                    handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -129,6 +130,7 @@ public class GpsManager extends AppCompatActivity {
     //METHODS
     public void stopLocationUpdates() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallBack);
+        handler.removeCallbacksAndMessages(null);
     }
 
     public void startLocationUpdates() {
@@ -140,10 +142,10 @@ public class GpsManager extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            Log.e(TAG, "client not started");
+            Log.e(TAG, "gps not started");
         } else{
             fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallBack, null);
-            Log.e(TAG, "client started");
+            Log.e(TAG, "gps started");
         }
     }
 
@@ -153,11 +155,11 @@ public class GpsManager extends AppCompatActivity {
             ActivityCompat.requestPermissions((MainActivity) appContext, PERMISSIONS, PERMISSIONS_ALL);
         }
             //startLocationUpdates();
-            Handler handler = new Handler();
+            handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Log.e(TAG, "handler made from request permissions");
+                    //Log.e(TAG, "handler made from request permissions");
                     updateGPS();
                     handler.postDelayed(this,UPDATE_INTERVAL * 1000 );
                 }
