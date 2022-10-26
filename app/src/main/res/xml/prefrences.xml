@@ -10,13 +10,20 @@
 
     <PreferenceCategory android:title="GPS">
 
-
         <SwitchPreference
             android:key="sw_location_services"
             android:title="Location Services" />
         <SwitchPreference
             android:key="sw_save_power"
             android:title="GPS Save Power" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Radar">
+
+        <EditTextPreference
+            android:key="radar_radius"
+            android:title="Set Radius"
+            android:text="20"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
