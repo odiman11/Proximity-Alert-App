@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,7 +21,10 @@ import androidx.preference.PreferenceManager;
 import com.google.android.gms.location.Priority;
 import com.portfolio.proximityalerts.databinding.MainFragmentBinding;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.HashMap;
+import java.util.Locale;
 
 /* ProximityAlerts - personal radar.
     Application tracks phone GPS data
@@ -71,6 +75,7 @@ public class MainFragment extends Fragment{
     LinearLayout userTextLayer;
     LinearLayout targetTextLayer;
     LinearLayout visibleDashboard;
+    static double nauticalMile;
 
 
     @Override
@@ -88,6 +93,7 @@ public class MainFragment extends Fragment{
 
         //get necessary views
         encounterLayer = binding.encounterLayer;
+        binding.tvRadiusUI.setText(String.valueOf( (int) nauticalMile) );
         userTextLayer = view.findViewById(R.id.text_board_insert);
         targetTextLayer = view.findViewById(R.id.encounter_text_board_insert);
         targetTextLayer.setVisibility(View.GONE);
@@ -129,9 +135,9 @@ public class MainFragment extends Fragment{
                         if (objectList[2] != null) {
                             //GPS
                             Location l = (Location) objectList[2];
-                            UdpClient.updateLocation(l);
+                            UdpClient.setCurrentLocation(l);
                             binding.textBoardInsert.displayLat.setText(String.valueOf(l.getLatitude()));
-                            binding.textBoardInsert.displayLong.setText(String.valueOf(l.getLatitude()));
+                            binding.textBoardInsert.displayLong.setText(String.valueOf(l.getLongitude()));
                             if (l.hasSpeed()) {
                                 binding.textBoardInsert.displaySpeed.setText(String.valueOf(l.getSpeed()));
                             } else {
@@ -144,7 +150,8 @@ public class MainFragment extends Fragment{
                             //CLIENT
                             Message clientMsg = (Message) objectList[3];
                             EncounterView view = new EncounterView(getContext(), clientMsg);
-                            drawEncounter(radarManager.setEncounter(view));
+                            HashMap viewList = radarManager.setEncounter(view);
+                            drawEncounter(viewList);
                         }
                         break;
                     default:
@@ -159,6 +166,11 @@ public class MainFragment extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+
+        nauticalMile = (Double.parseDouble(sharedPreferences.getString("radar_radius", "20")));
+        binding.tvRadiusUI.setText(String.valueOf( (int) nauticalMile) );
+        Log.e(TAG, "moved to foreground");
+        udpClient.startClient();
         if(sharedPreferences.getBoolean("switch_compass", true)){
             compassManager.registerListener();
         } else {
@@ -182,15 +194,21 @@ public class MainFragment extends Fragment{
     public void onPause() {
         super.onPause();
         // to stop the compass listener and save battery
+        Log.e(TAG, "moved to background");
         compassManager.unregisterListener();
+        udpClient.stopClient();
+        gpsManager.stopLocationUpdates();
     }
 
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Log.e(TAG, "fragment destroyd");
         gpsManager.stopLocationUpdates();
         compassManager.unregisterListener();
+        udpClient.stopClient();
+        encounterLayer.removeAllViews();
         binding = null;
     }
 
@@ -215,16 +233,19 @@ public class MainFragment extends Fragment{
 
             //if view was not updated for 5 min, remove it from list
             if(System.currentTimeMillis() - targetView.timestamp >= 300000){
+                Log.e(TAG, "target did not respond for 5 min");
                 RadarManager.removeTarget(targetView.mmsi);
                 continue;
             }
 
             if(distance > radius) {
+                Log.e(TAG, "target too far");
                 if(targetAdded){
                     encounterLayer.removeView(encounterLayer.findViewById(targetView.getId()));
                 }
             } else {
                 if(!targetAdded) {
+                    Log.e(TAG, "drawing new target");
                     //runOnUiThread(() -> encounterLayerView.addView(view));
                     encounterLayer.addView(targetView);
                     targetView.setLayoutParams(new FrameLayout.LayoutParams(20, 20)); //set view size, must be after render on screen
@@ -259,8 +280,9 @@ public class MainFragment extends Fragment{
        * RETURN: Float list of X and Y pixels points
         */
 
-        int radius = Math.min(width, height);
-        int center = radius /2;
+        int diameter = Math.min(width, height);
+        int center = diameter /2;
+        double radiusDouble = (double) center;
 
         //Longitude and Latitude
         double closeObjectY = view.position.getLat();
@@ -272,13 +294,24 @@ public class MainFragment extends Fragment{
         double distanceX = hostX - closetObjectX;
         double distanceY = hostY - closeObjectY;
 
+        //find the percentage difference between the distance and the radar radius(nautical mile)
+        double percentX = distanceX/nauticalMile;
+        double percentY= distanceY/nauticalMile;
+
+        double pixelPercX = percentX * radiusDouble;
+        double pixelPercy = percentY * radiusDouble;
+
+        //find how much is the percent from the radius in pixels
+        double pixelX = radiusDouble + pixelPercX;
+        double pixelY = radiusDouble + pixelPercy;
+
         //add the difference to the view center point in pixels
         double closeXDouble = center + (center * -(distanceX * 10));
         double closeYDouble = center + (center * (distanceY * 10));
 
 
         //return points in list
-        return new double[]{closeXDouble, closeYDouble};
+        return new double[]{pixelX, pixelY};
     }
     private void crossFade(LinearLayout toFront, LinearLayout toBack){
         /*function handles cross fade animation between two Layer Layouts*/
