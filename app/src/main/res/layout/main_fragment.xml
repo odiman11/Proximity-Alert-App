@@ -16,6 +16,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/tv_radiusUI"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:text="TextView" />
+
         <com.portfolio.proximityalerts.RadarView
             android:id="@+id/radarView"
             android:layout_width="match_parent"
