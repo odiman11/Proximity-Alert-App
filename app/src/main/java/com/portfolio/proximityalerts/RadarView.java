@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -18,9 +17,6 @@ public class RadarView extends View{
 
     //CONSTANTS
     public static final String TAG = "Graphic Radar";
-    public static final int TEXT_SIZE = 50;
-    public static final int HALF_FONT_Y_SIZE = (int)Math.ceil(TEXT_SIZE / 3);
-    public static final int HALF_FONT_X_SIZE = TEXT_SIZE / 2;
 
     //VARIABLES
     Paint circle, radarFrame, align, background;
@@ -93,7 +89,6 @@ public class RadarView extends View{
         int j = center - 1;
 
         int centerHeight = 80;
-        int centerWidth = centerHeight - 80;
 
         //DRAW CIRCLE
         canvas.drawCircle(center, center, j, background);
@@ -110,7 +105,6 @@ public class RadarView extends View{
         //canvas.drawCircle(center, center, center/20, radarCenter);
         arrow.setBounds(center - centerHeight, center - centerHeight, center + centerHeight, center + centerHeight);
         arrow.draw(canvas);
-
 
         //DRAW FRAME
         canvas.drawCircle(center, center, j, radarFrame);
