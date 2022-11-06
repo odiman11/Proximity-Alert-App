@@ -15,7 +15,9 @@
     <string name="dashboard_speed">SPEED</string>
     <string name="dashboard_direction">DIRECTION</string>
     <string name="dashboard_mmsi">MMSI</string>
-    <string name="not_available">NA</string>
+    <string name="not_available">Not Available</string>
+    <string name="error">Error</string>
+    <string name="distance_mile">Distance(miles)</string>
 
 
 </resources>
