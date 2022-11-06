@@ -45,7 +45,7 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_corners_encounter_buttom"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="@string/not_available" />
 
         <TextView
             android:id="@+id/display_encounter_long"
@@ -55,7 +55,7 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_corners_encounter_buttom"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="@string/not_available" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,7 +71,7 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_corners_encounter"
             android:gravity="center"
-            android:text="@string/dashboard_speed" />
+            android:text="@string/distance_mile" />
 
         <TextView
             android:id="@+id/title_mmsi"
@@ -98,7 +98,7 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_corners_encounter_buttom"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="@string/not_available" />
 
         <TextView
             android:id="@+id/tv_display_encounter_mmsi"
@@ -108,6 +108,6 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_corners_encounter_buttom"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="@string/not_available" />
     </LinearLayout>
 </LinearLayout>
