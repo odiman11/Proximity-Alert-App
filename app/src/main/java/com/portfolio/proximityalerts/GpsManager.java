@@ -79,7 +79,7 @@ public class GpsManager extends AppCompatActivity {
                 if(locationResult == null){
                     Log.e(TAG, "location is null");
                     return;}
-                Log.e(TAG, locationResult.getLastLocation().toString());
+                //Log.e(TAG, locationResult.getLastLocation().toString());
                 gpsLocationLiveData.setValue(locationResult.getLastLocation());
 
             }
@@ -88,7 +88,6 @@ public class GpsManager extends AppCompatActivity {
 
         //requestPermissionsLauncher = singleInstance.registerForActivityResult(ActivityResultContracts.RequestPermission());
     }//END OF CONSTRUCTOR
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
@@ -120,7 +119,7 @@ public class GpsManager extends AppCompatActivity {
                     Toast.makeText(appContext, "this app requires permissions in order to work", Toast.LENGTH_SHORT).show();
                     finish();
                 }
-                return;
+                break;
         }
         // Other 'case' lines to check for other
         // permissions this app might request.
@@ -179,17 +178,9 @@ public class GpsManager extends AppCompatActivity {
             fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
                 //got permission. Put Value of location in UI
                 if(location != null) {
-                    double longitude = location.getLongitude();
-                    double latitude = location.getLatitude();
-                    double speed;
-                    if (location.hasSpeed()) {
-                        speed = location.getSpeed();
-                    } else {
-                        speed = 0.0;
-                    }
                     currentLocation = location;
                     gpsLocationLiveData.setValue(location);
-                    Log.e(TAG, location.toString());
+                    //Log.e(TAG, location.toString());
                 } else {
                     Log.e(TAG, "no location");
                 }
