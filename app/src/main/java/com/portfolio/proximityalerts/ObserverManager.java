@@ -1,7 +1,6 @@
 package com.portfolio.proximityalerts;
 
 import android.location.Location;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
