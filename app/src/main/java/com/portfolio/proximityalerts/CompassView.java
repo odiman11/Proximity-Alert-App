@@ -23,7 +23,7 @@ public class CompassView extends View{
     Paint radarFrame, compass;
 
     //CONSTRUCTOR
-    //i dont know why 3 of em
+    //i don't know why 3 of em
     public CompassView(Context context) {
         this(context, null);
     }
@@ -80,8 +80,6 @@ public class CompassView extends View{
         int center = radius /2;
         int j = center - 1;
 
-        int centerHeight = 150;
-        int centerWidth = centerHeight - 80;
 
         //DRAW COMPASS
         canvas.drawText("N", center, TEXT_SIZE, compass);
