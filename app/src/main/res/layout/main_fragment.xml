@@ -21,7 +21,7 @@
             android:layout_width="82dp"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
-            android:text="TextView" />
+            android:text="@string/error" />
 
         <com.portfolio.proximityalerts.RadarView
             android:id="@+id/radarView"
@@ -29,9 +29,14 @@
             android:layout_height="wrap_content" />
 
         <FrameLayout
-            android:id="@+id/encounterLayer"
+            android:id="@+id/radarLayer"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/encounterLayer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
             <com.portfolio.proximityalerts.CompassView
                 android:id="@+id/compassView"
@@ -42,6 +47,7 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/text_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
