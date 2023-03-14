@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">ProximityAlerts</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="dashboard_radius">RADIUS</string>
+    <string name="dashboard_targets_sum">TARGETS</string>
+    <string name="dashboard_latitude">LATITUDE</string>
+    <string name="dashboard_longitude">LONGITUDE</string>
+    <string name="dashboard_speed">SPEED</string>
+    <string name="dashboard_direction">DIRECTION</string>
+    <string name="dashboard_mmsi">MMSI</string>
+    <string name="dashboard_name">NAME</string>
+    <string name="dashboard_description">Description:</string>
+    <string name="error">Error</string>
+    <string name="distance_mile">Distance(miles)</string>
+    <string name="distance_km">Distance(Km)</string>
+
+    <string name="not_available">Not Available</string>
+    <string name="not_available_shrt">N/A</string>
+
+    <string name="format_mile">Miles(mi)</string>
+    <string name="format_km">Kilometers(km)</string>
+
+    <!-- ToolBar Titles -->
+    <string name="main_fragment_label">Proximity Alerts</string>
+    <string name="settings_label">Settings</string>
+    <string name="toolbar_title_target_list">Favorites</string>
+    <string name="toolbar_add_to_title_target_list">Add</string>
+    <string name="toolbar_add_remove_to_title_target_list">Remove</string>
+
+    <!-- ToolBar Id's -->
+    <string name="toolbar_id_add">save_to_target_list</string>
+    <string name="toolbar_id_remove">remove_from_target_list</string>
+
+    <!-- Target Description -->
+    <string name="target_lvl_low">LOW</string>
+    <string name="target_lvl_med">MED</string>
+    <string name="target_lvl_high">HIGH</string>
+
+    <!-- popup menu -->
+    <string name="target_popup_save_button">Save</string>
+
+</resources>

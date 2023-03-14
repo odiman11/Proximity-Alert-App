@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidStudioProjects/ProximityAlerts/app/src/main/res/font/digital.xml" value="0.4375" />
+        <entry key="..\:/AndroidStudioProjects/ProximityAlerts/app/src/main/res/font/font_resource.xml" value="0.4375" />
+        <entry key="..\:/AndroidStudioProjects/ProximityAlerts/app/src/main/res/layout/activity_main.xml" value="0.5541666666666667" />
+        <entry key="..\:/AndroidStudioProjects/ProximityAlerts/app/src/main/res/layout/content_main.xml" value="0.4703125" />
+        <entry key="..\:/AndroidStudioProjects/ProximityAlerts/app/src/main/res/layout/encounter_board_main_fragment.xml" value="0.33" />
+        <entry key="..\:/AndroidStudioProjects/ProximityAlerts/app/src/main/res/layout/layout_target_list_item.xml" value="0.41081081081081083" />
+        <entry key="..\:/AndroidStudioProjects/ProximityAlerts/app/src/main/res/layout/main_fragment.xml" value="0.5180037902716361" />
+        <entry key="..\:/AndroidStudioProjects/ProximityAlerts/app/src/main/res/layout/sample_masked_view.xml" value="0.46822916666666664" />
+        <entry key="..\:/AndroidStudioProjects/ProximityAlerts/app/src/main/res/layout/text_board_main_fragment.xml" value="0.33" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

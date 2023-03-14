@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BlackText" parent="Theme.AppCompat">
+        <item name="android:textColor">#FF000000</item>
+    </style>
+
+    <style name="WhiteText" parent="Theme.AppCompat">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">11dp</item>
+    </style>
+
+    <style name="GreenText" parent="Theme.AppCompat">
+        <item name="android:fontFamily">@font/digital_7</item>
+        <item name="android:textColor">#D72ACA0E</item>
+    </style>
+
+</resources>
