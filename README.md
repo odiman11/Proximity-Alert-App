@@ -1,4 +1,4 @@
-# ProximityAlert
+# ProximityAlerts
 
 Android radar to know who is around you.
 
